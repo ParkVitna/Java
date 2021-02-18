@@ -8,7 +8,7 @@ public class TeamProject01 {
 
 	public static void main(String[] args) {
 		boolean run  = true;
-		int index = 1;
+		int index = 0;
 		int count = 0;
 		String title;
 		String content;
@@ -29,9 +29,28 @@ public class TeamProject01 {
 					System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
 					System.out.println("------------------------------");
 					
+					int listIndex = index;
+					
+					/////?????
+					for(int i=0; i<boardArray.length; i++) {
+						for(int j=listIndex; j<=0; j--) {
+							if(boardArray[i][0].equals(listIndex)) {
+								System.out.print(boardArray[i][0] +"\t");
+				                System.out.print(boardArray[i][1] +"\t");
+				                System.out.print(boardArray[i][2] +"\t");
+				                System.out.print(boardArray[i][3] +"\t");
+				                System.out.println(boardArray[i][4] +"\t");
+								
+							}
+						}
+						
+					}
+					
+					
+					/*
 					for(int i=0; i<boardArray.length; i++) {
 						for(int j=index; j>0; j--) {
-							if(boardArray[i][0].equals(index)) {
+							if((boardArray[i][0].equals(index))&&(!(boarArray[i][0].equals(null)))) { //?????????????
 								System.out.print(boardArray[i][0] +"\t");
 				                System.out.print(boardArray[i][1] +"\t");
 				                System.out.print(boardArray[i][2] +"\t");
@@ -42,6 +61,7 @@ public class TeamProject01 {
 						System.out.println();
 						break;
 					}
+					*/
 				
 				
 			}else if(selectNo == 2) {//생성 (O)
@@ -164,7 +184,7 @@ public class TeamProject01 {
 		               }
 		            }
 				
-			}else if(selectNo == 5) {//삭제 (-> 목록 나오게)
+			}else if(selectNo == 5) {//삭제 (X)
 				System.out.print("번호: ");
 				int deleteIndex = Integer.parseInt(scanner.nextLine());
 				for(int i=0; i<boardArray.length; i++) {
@@ -174,7 +194,29 @@ public class TeamProject01 {
 						}
 						break;
 					}
+					
 				}
+				
+				//목록 보여주기
+				//보여주기
+				System.out.println("------------------------------");
+				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
+				System.out.println("------------------------------");
+				
+				for(int i =0; i<boardArray.length; i++) {
+		               if(boardArray[i][0] != null) {
+
+		                  System.out.print(boardArray[i][0] + "\t");
+		                  System.out.print(boardArray[i][1] + "\t");
+		                  System.out.print(boardArray[i][2] +"\t");
+		                  System.out.print(boardArray[i][3] +"\t");
+		                  System.out.println(boardArray[i][4]);
+		               }
+		               else {
+		                  continue;
+		               }
+		            }
+				
 				
 			}else if(selectNo == 6) {//종료 (O)
 				run = false;
