@@ -31,26 +31,16 @@ public class TeamProject01 {
 					
 					int listIndex = index;
 					
-					/////?????
-					for(int i=0; i<boardArray.length; i++) {
-						for(int j=listIndex; j<=0; j--) {
-							if(boardArray[i][0].equals(listIndex)) {
-								System.out.print(boardArray[i][0] +"\t");
-				                System.out.print(boardArray[i][1] +"\t");
-				                System.out.print(boardArray[i][2] +"\t");
-				                System.out.print(boardArray[i][3] +"\t");
-				                System.out.println(boardArray[i][4] +"\t");
-								
-							}
-						}
-						
-					}
-					
+					System.out.println(listIndex);
 					
 					/*
-					for(int i=0; i<boardArray.length; i++) {
-						for(int j=index; j>0; j--) {
-							if((boardArray[i][0].equals(index))&&(!(boarArray[i][0].equals(null)))) { //?????????????
+					for(int j=listIndex; j>=0; j--) {
+						for(int i=0; i<boardArray.length; i++) {
+							if(boardArray[i][0]==null) {
+								continue;
+							}else if(!boardArray[i][0].equals(listIndex)) {
+								continue;
+							}else {
 								System.out.print(boardArray[i][0] +"\t");
 				                System.out.print(boardArray[i][1] +"\t");
 				                System.out.print(boardArray[i][2] +"\t");
@@ -58,10 +48,25 @@ public class TeamProject01 {
 				                System.out.println(boardArray[i][4] +"\t");
 							}
 						}
-						System.out.println();
-						break;
 					}
 					*/
+					
+					for(int j=listIndex; j>0; j--) {
+						for(int i=0; i<boardArray.length; i++) {
+							if(boardArray[i][0]==null) {
+								continue;
+							}else if(boardArray[i][0].equals(listIndex)) {
+									System.out.print(boardArray[i][0] +"\t");
+					                System.out.print(boardArray[i][1] +"\t");
+					                System.out.print(boardArray[i][2] +"\t");
+					                System.out.print(boardArray[i][3] +"\t");
+					                System.out.println(boardArray[i][4] +"\t");
+					                break;
+							}
+						}
+					}
+					
+				
 				
 				
 			}else if(selectNo == 2) {//생성 (O)
@@ -111,22 +116,24 @@ public class TeamProject01 {
 				int readIndex = Integer.parseInt(scanner.nextLine());
 				
 				for(int i=0; i<boardArray.length; i++) {
-					if( boardArray[i][0].equals(String.valueOf(readIndex))) {
-						count = Integer.parseInt(boardArray[i][4]);
-						count++;
-						boardArray[i][4] = String.valueOf(count);
-						
-						System.out.print("제목: ");
-						System.out.println(boardArray[i][1]);
-						System.out.print("내용: ");
-						System.out.println(boardArray[i][2]);
-						System.out.print("글쓴이: ");
-						System.out.println(boardArray[i][3]);
-						System.out.print("조회수: ");
-						System.out.println(boardArray[i][4]);
-						
-					}
-					break;
+					if(boardArray[i][0]==null) {
+						continue;
+					}else if( boardArray[i][0].equals(String.valueOf(readIndex))) {
+							count = Integer.parseInt(boardArray[i][4]);
+							count++;
+							boardArray[i][4] = String.valueOf(count);
+							
+							System.out.print("제목: ");
+							System.out.println(boardArray[i][1]);
+							System.out.print("내용: ");
+							System.out.println(boardArray[i][2]);
+							System.out.print("글쓴이: ");
+							System.out.println(boardArray[i][3]);
+							System.out.print("조회수: ");
+							System.out.println(boardArray[i][4]);
+							break;
+						}
+					
 				}
 				
 				//보여주기
@@ -152,17 +159,19 @@ public class TeamProject01 {
 				System.out.print("번호: ");
 				int updateIndex = Integer.parseInt(scanner.nextLine());
 				for(int i=0; i<boardArray.length; i++) {
-					if( boardArray[i][0].equals(String.valueOf(updateIndex))) {
-						
-						System.out.println("기존제목: " + boardArray[i][1]);
-						System.out.print("수정제목: ");
-						boardArray[i][1] = scanner.nextLine();
-						System.out.println("기존내용: " + boardArray[i][2]);
-						System.out.print("수정내용: ");
-						boardArray[i][2] = scanner.nextLine();
-						
-					}
-					break;
+					if(boardArray[i][0]==null) {
+						continue;
+					}else if( boardArray[i][0].equals(String.valueOf(updateIndex))) {
+							
+							System.out.println("기존제목: " + boardArray[i][1]);
+							System.out.print("수정제목: ");
+							boardArray[i][1] = scanner.nextLine();
+							System.out.println("기존내용: " + boardArray[i][2]);
+							System.out.print("수정내용: ");
+							boardArray[i][2] = scanner.nextLine();
+							break;
+						}
+				
 				}
 				
 				//보여주기
@@ -188,12 +197,14 @@ public class TeamProject01 {
 				System.out.print("번호: ");
 				int deleteIndex = Integer.parseInt(scanner.nextLine());
 				for(int i=0; i<boardArray.length; i++) {
-					if( boardArray[i][0].equals(String.valueOf(deleteIndex))) {
-						for(int j=0; j<5; j++) {
-							boardArray[i][j] = null;
+					if(boardArray[i][0]==null) {
+						continue;
+					}else if( boardArray[i][0].equals(String.valueOf(deleteIndex))) {
+							for(int j=0; j<5; j++) {
+								boardArray[i][j] = null;
+							}
+							break;
 						}
-						break;
-					}
 					
 				}
 				
