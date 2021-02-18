@@ -182,7 +182,6 @@ public class TeamProject01 {
 			
 		}
 		
-		
 		System.out.println("프로그램 종료");
 
 	}
