@@ -34,23 +34,6 @@ public class TeamProject01 {
 					System.out.println(listIndex);
 					
 					/*
-					for(int j=listIndex; j>=0; j--) {
-						for(int i=0; i<boardArray.length; i++) {
-							if(boardArray[i][0]==null) {
-								continue;
-							}else if(!boardArray[i][0].equals(listIndex)) {
-								continue;
-							}else {
-								System.out.print(boardArray[i][0] +"\t");
-				                System.out.print(boardArray[i][1] +"\t");
-				                System.out.print(boardArray[i][2] +"\t");
-				                System.out.print(boardArray[i][3] +"\t");
-				                System.out.println(boardArray[i][4] +"\t");
-							}
-						}
-					}
-					*/
-					
 					for(int j=listIndex; j>0; j--) {
 						for(int i=0; i<boardArray.length; i++) {
 							if(boardArray[i][0]==null) {
@@ -65,6 +48,39 @@ public class TeamProject01 {
 							}
 						}
 					}
+					*/
+					
+					// 강병주 idea
+					int[] check = new int[100]; //내림차순 [][0] 배열 따로 만듬
+					for(int i=0; i<boardArray.length; i++) {
+						if(boardArray[i][0]==null) { //nullPointerException 해결 위함
+							continue;
+						}
+						int max = 0; //check배열의 최대값 초기값 0
+						int index01 = -1; // 왜 -> 0이나 1이 아닌 값 주기
+						for(int j=0; j<boardArray.length; j++) {
+							if(boardArray[j][0]==null) {
+								continue;
+							}
+							int num = Integer.parseInt(boardArray[j][0]); //null이 아닌 처음 만난 [][0]값 저장
+							if(max<=num && check[j]==0) { //check배열은 int 타입으로 초기값 0
+								max = num;
+								index = j; //
+							}
+						}
+						
+						if(index!=-1) { //바로 위 for문 빠져나오면서 내림차순으로 index return
+						 System.out.print(boardArray[index][0] + "\t");
+		                 System.out.print(boardArray[index][1] + "\t");
+		                 System.out.print(boardArray[index][2] +"\t");
+		                 System.out.print(boardArray[index][3] +"\t");
+		                 System.out.println(boardArray[i][4]);
+						 check[index]=1; //최대값 출력하고 나면 1로 저장해서 다음 최대값 구할수 있게
+						}
+					}
+					
+					
+					
 					
 				
 				
