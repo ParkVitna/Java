@@ -29,11 +29,9 @@ public class TeamProject01 {
 					System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
 					System.out.println("------------------------------");
 					
+					/*
 					int listIndex = index;
 					
-					System.out.println(listIndex);
-					
-					/*
 					for(int j=listIndex; j>0; j--) {
 						for(int i=0; i<boardArray.length; i++) {
 							if(boardArray[i][0]==null) {
@@ -44,11 +42,12 @@ public class TeamProject01 {
 					                System.out.print(boardArray[i][2] +"\t");
 					                System.out.print(boardArray[i][3] +"\t");
 					                System.out.println(boardArray[i][4] +"\t");
-					                break;
+					               
 							}
 						}
 					}
 					*/
+					
 					
 					// 강병주 idea
 					int[] check = new int[100]; //내림차순 [][0] 배열 따로 만듬
@@ -72,8 +71,8 @@ public class TeamProject01 {
 						if(index!=-1) { //바로 위 for문 빠져나오면서 내림차순으로 index return
 						 System.out.print(boardArray[index][0] + "\t");
 		                 System.out.print(boardArray[index][1] + "\t");
-		                 System.out.print(boardArray[index][2] +"\t");
-		                 System.out.print(boardArray[index][3] +"\t");
+		                 System.out.print(boardArray[index][2] + "\t");
+		                 System.out.print(boardArray[index][3] + "\t");
 		                 System.out.println(boardArray[i][4]);
 						 check[index]=1; //최대값 출력하고 나면 1로 저장해서 다음 최대값 구할수 있게
 						}
