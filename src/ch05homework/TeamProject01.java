@@ -29,26 +29,26 @@ public class TeamProject01 {
 					System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
 					System.out.println("------------------------------");
 					
-					/*
+					
 					int listIndex = index;
 					
 					for(int j=listIndex; j>0; j--) {
 						for(int i=0; i<boardArray.length; i++) {
 							if(boardArray[i][0]==null) {
 								continue;
-							}else if(boardArray[i][0].equals(listIndex)) {
+							}else if(boardArray[i][0].equals(String.valueOf(listIndex))) {
 									System.out.print(boardArray[i][0] +"\t");
 					                System.out.print(boardArray[i][1] +"\t");
 					                System.out.print(boardArray[i][2] +"\t");
 					                System.out.print(boardArray[i][3] +"\t");
 					                System.out.println(boardArray[i][4] +"\t");
-					               
+					                break;
 							}
 						}
 					}
-					*/
 					
 					
+					/*
 					// 강병주 idea
 					int[] check = new int[100]; //내림차순 [][0] 배열 따로 만듬
 					for(int i=0; i<boardArray.length; i++) {
@@ -77,7 +77,7 @@ public class TeamProject01 {
 						 check[index]=1; //최대값 출력하고 나면 1로 저장해서 다음 최대값 구할수 있게
 						}
 					}
-					
+					*/
 					
 					
 					
