@@ -8,8 +8,8 @@ public class TeamProject01 {
 
 	public static void main(String[] args) {
 		boolean run  = true;
-		int index = 0;
-		int count = 0;
+		int index = 0; //개시물번호
+		int count = 0; //조회수
 		String title;
 		String content;
 		String writer;
@@ -17,19 +17,26 @@ public class TeamProject01 {
 		Scanner scanner = new Scanner(System.in);
 		
 		while(run) {
-			System.out.println("-------------------------------------------------------------------");
-			System.out.println("1.목록|2.생성(Create)|3.읽기(Read)|4.수정(Update)|5.삭제(Delete)|6.종료");
-			System.out.println("-------------------------------------------------------------------");
+			System.out.println("----------------------------------------------------------------------------------------------");
+			System.out.println("1.목록 | 2.생성(Create) | 3.읽기(Read) | 4.수정(Update) | 5.삭제(Delete) | 6.인기글보기(Top5) | 7.종료");
+			System.out.println("----------------------------------------------------------------------------------------------");
 			System.out.print("메뉴선택: ");
 			
 			int selectNo = Integer.parseInt(scanner.nextLine());
 			
-			if(selectNo == 1) {//목록 (X)
+			if(selectNo == 1) {//목록
+					int totalNum = 0; //총갯수
+					for(int i=0; i<boardArray.length; i++) {
+						if(boardArray[i][0] != null) {
+							totalNum++;
+						}
+					}
+				
 					System.out.println("------------------------------");
-					System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
+					System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수       총 갯수: " + totalNum );
 					System.out.println("------------------------------");
 					
-					
+					/*
 					int listIndex = index;
 					
 					for(int j=listIndex; j>0; j--) {
@@ -46,45 +53,40 @@ public class TeamProject01 {
 							}
 						}
 					}
-					
-					
-					/*
-					// 강병주 idea
-					int[] check = new int[100]; //내림차순 [][0] 배열 따로 만듬
-					for(int i=0; i<boardArray.length; i++) {
-						if(boardArray[i][0]==null) { //nullPointerException 해결 위함
-							continue;
-						}
-						int max = 0; //check배열의 최대값 초기값 0
-						int index01 = -1; // 왜 -> 0이나 1이 아닌 값 주기
-						for(int j=0; j<boardArray.length; j++) {
-							if(boardArray[j][0]==null) {
-								continue;
-							}
-							int num = Integer.parseInt(boardArray[j][0]); //null이 아닌 처음 만난 [][0]값 저장
-							if(max<=num && check[j]==0) { //check배열은 int 타입으로 초기값 0
-								max = num;
-								index = j; //
-							}
-						}
-						
-						if(index!=-1) { //바로 위 for문 빠져나오면서 내림차순으로 index return
-						 System.out.print(boardArray[index][0] + "\t");
-		                 System.out.print(boardArray[index][1] + "\t");
-		                 System.out.print(boardArray[index][2] + "\t");
-		                 System.out.print(boardArray[index][3] + "\t");
-		                 System.out.println(boardArray[i][4]);
-						 check[index]=1; //최대값 출력하고 나면 1로 저장해서 다음 최대값 구할수 있게
-						}
-					}
 					*/
 					
 					
 					
+					// 
+					int[] check = new int[100]; //출력
+					for(int i=0; i<boardArray.length; i++) {
+						if(boardArray[i][0]==null) { //nullPointerException 해결 위함
+							continue;
+						}
+						int max = 0;
+						int listIndex = -1; 
+						for(int j=0; j<boardArray.length; j++) { //게시판번호 max 찾기
+							if(boardArray[j][0]==null) {
+								continue;
+							}
+							int num = Integer.parseInt(boardArray[j][0]); //게시판번호
+							if(max<=num && check[j]==0) { //[][0]의 최댓값 && 출력안함
+								max = num;
+								listIndex = j; //게시판번호 제일 큰 배열 인덱스
+							}
+						}
+						
+						if(listIndex!=-1) { //게시판번호 제일 큰 배열 출력
+						 System.out.print(boardArray[listIndex][0] + "\t");
+		                 System.out.print(boardArray[listIndex][1] + "\t");
+		                 System.out.print(boardArray[listIndex][2] + "\t");
+		                 System.out.print(boardArray[listIndex][3] + "\t");
+		                 System.out.println(boardArray[listIndex][4]);
+						 check[listIndex]=1; //출력했으면 1 -> 그 다음으로 큰 게시판번호 찾을 수 있음
+						}
+					}
 				
-				
-				
-			}else if(selectNo == 2) {//생성 (O)
+			}else if(selectNo == 2) {//생성
 				index++;
 				
 				System.out.print("제목: ");
@@ -106,27 +108,48 @@ public class TeamProject01 {
 
 				}
 				
-				//보여주기
+				//목록 이동
+				int totalNum = 0; //총갯수
+				for(int i=0; i<boardArray.length; i++) {
+					if(boardArray[i][0] != null) {
+						totalNum++;
+					}
+				}
+			
 				System.out.println("------------------------------");
-				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
+				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수       총 갯수: " + totalNum );
 				System.out.println("------------------------------");
-				
-				for(int i =0; i<boardArray.length; i++) {
-		               if(boardArray[i][0] != null) {
 
-		                  System.out.print(boardArray[i][0] + "\t");
-		                  System.out.print(boardArray[i][1] + "\t");
-		                  System.out.print(boardArray[i][2] +"\t");
-		                  System.out.print(boardArray[i][3] +"\t");
-		                  System.out.println(boardArray[i][4]);
-		               }
-		               else {
-		                  continue;
-		               }
-		            }
+				int[] check = new int[100]; //출력
+				for(int i=0; i<boardArray.length; i++) {
+					if(boardArray[i][0]==null) { //nullPointerException 해결 위함
+						continue;
+					}
+					int max = 0;
+					int listIndex = -1; 
+					for(int j=0; j<boardArray.length; j++) { //게시판번호 max 찾기
+						if(boardArray[j][0]==null) {
+							continue;
+						}
+						int num = Integer.parseInt(boardArray[j][0]); //게시판번호
+						if(max<=num && check[j]==0) { //[][0]의 최댓값 && 출력안함
+							max = num;
+							listIndex = j; //게시판번호 제일 큰 배열 인덱스
+						}
+					}
+					
+					if(listIndex!=-1) { //게시판번호 제일 큰 배열 출력
+					 System.out.print(boardArray[listIndex][0] + "\t");
+	                 System.out.print(boardArray[listIndex][1] + "\t");
+	                 System.out.print(boardArray[listIndex][2] + "\t");
+	                 System.out.print(boardArray[listIndex][3] + "\t");
+	                 System.out.println(boardArray[listIndex][4]);
+					 check[listIndex]=1; //출력했으면 1 -> 그 다음으로 큰 게시판번호 찾을 수 있음
+					}
+				}
 
 				
-			}else if(selectNo == 3) {//읽기 (O)
+			}else if(selectNo == 3) {//읽기
 				System.out.print("번호: ");
 				int readIndex = Integer.parseInt(scanner.nextLine());
 				
@@ -151,26 +174,7 @@ public class TeamProject01 {
 					
 				}
 				
-				//보여주기
-				System.out.println("------------------------------");
-				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
-				System.out.println("------------------------------");
-				
-				for(int i =0; i<boardArray.length; i++) {
-		               if(boardArray[i][0] != null) {
-
-		                  System.out.print(boardArray[i][0] + "\t");
-		                  System.out.print(boardArray[i][1] + "\t");
-		                  System.out.print(boardArray[i][2] +"\t");
-		                  System.out.print(boardArray[i][3] +"\t");
-		                  System.out.println(boardArray[i][4]);
-		               }
-		               else {
-		                  continue;
-		               }
-		            }
-				
-			}else if(selectNo == 4) {//수정 (O)
+			}else if(selectNo == 4) {//수정
 				System.out.print("번호: ");
 				int updateIndex = Integer.parseInt(scanner.nextLine());
 				for(int i=0; i<boardArray.length; i++) {
@@ -189,26 +193,47 @@ public class TeamProject01 {
 				
 				}
 				
-				//보여주기
+				//목록이동
+				int totalNum = 0; //총갯수
+				for(int i=0; i<boardArray.length; i++) {
+					if(boardArray[i][0] != null) {
+						totalNum++;
+					}
+				}
+			
 				System.out.println("------------------------------");
-				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
+				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수       총 갯수: " + totalNum );
 				System.out.println("------------------------------");
-				
-				for(int i =0; i<boardArray.length; i++) {
-		               if(boardArray[i][0] != null) {
 
-		                  System.out.print(boardArray[i][0] + "\t");
-		                  System.out.print(boardArray[i][1] + "\t");
-		                  System.out.print(boardArray[i][2] +"\t");
-		                  System.out.print(boardArray[i][3] +"\t");
-		                  System.out.println(boardArray[i][4]);
-		               }
-		               else {
-		                  continue;
-		               }
-		            }
+				int[] check = new int[100]; //출력
+				for(int i=0; i<boardArray.length; i++) {
+					if(boardArray[i][0]==null) { //nullPointerException 해결 위함
+						continue;
+					}
+					int max = 0;
+					int listIndex = -1; 
+					for(int j=0; j<boardArray.length; j++) { //게시판번호 max 찾기
+						if(boardArray[j][0]==null) {
+							continue;
+						}
+						int num = Integer.parseInt(boardArray[j][0]); //게시판번호
+						if(max<=num && check[j]==0) { //[][0]의 최댓값 && 출력안함
+							max = num;
+							listIndex = j; //게시판번호 제일 큰 배열 인덱스
+						}
+					}
+					
+					if(listIndex!=-1) { //게시판번호 제일 큰 배열 출력
+					 System.out.print(boardArray[listIndex][0] + "\t");
+	                 System.out.print(boardArray[listIndex][1] + "\t");
+	                 System.out.print(boardArray[listIndex][2] + "\t");
+	                 System.out.print(boardArray[listIndex][3] + "\t");
+	                 System.out.println(boardArray[listIndex][4]);
+					 check[listIndex]=1; //출력했으면 1 -> 그 다음으로 큰 게시판번호 찾을 수 있음
+					}
+				}
 				
-			}else if(selectNo == 5) {//삭제 (X)
+			}else if(selectNo == 5) {//삭제
 				System.out.print("번호: ");
 				int deleteIndex = Integer.parseInt(scanner.nextLine());
 				for(int i=0; i<boardArray.length; i++) {
@@ -223,28 +248,89 @@ public class TeamProject01 {
 					
 				}
 				
-				//목록 보여주기
-				//보여주기
+				//목록이동
+				int totalNum = 0; //총갯수
+				for(int i=0; i<boardArray.length; i++) {
+					if(boardArray[i][0] != null) {
+						totalNum++;
+					}
+				}
+			
 				System.out.println("------------------------------");
-				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수");
+				System.out.println("번호| 제목 | 내용 | 글쓴이 | 조회수       총 갯수: " + totalNum );
 				System.out.println("------------------------------");
-				
-				for(int i =0; i<boardArray.length; i++) {
-		               if(boardArray[i][0] != null) {
 
-		                  System.out.print(boardArray[i][0] + "\t");
-		                  System.out.print(boardArray[i][1] + "\t");
-		                  System.out.print(boardArray[i][2] +"\t");
-		                  System.out.print(boardArray[i][3] +"\t");
-		                  System.out.println(boardArray[i][4]);
-		               }
-		               else {
-		                  continue;
-		               }
-		            }
+				int[] check = new int[100]; //출력체크 배열
+				for(int i=0; i<boardArray.length; i++) {
+					if(boardArray[i][0]==null) { //nullPointerException 해결 위함
+						continue;
+					}
+					int max = 0;
+					int listIndex = -1; 
+					for(int j=0; j<boardArray.length; j++) { //게시판번호 max 찾기
+						if(boardArray[j][0]==null) {
+							continue;
+						}
+						int num = Integer.parseInt(boardArray[j][0]); //게시판번호
+						if(max<=num && check[j]==0) { //[][0]의 최댓값 && 출력안함
+							max = num;
+							listIndex = j; //게시판번호 제일 큰 배열 인덱스
+						}
+					}
+					
+					if(listIndex!=-1) { //게시판번호 제일 큰 배열 출력
+					 System.out.print(boardArray[listIndex][0] + "\t");
+	                 System.out.print(boardArray[listIndex][1] + "\t");
+	                 System.out.print(boardArray[listIndex][2] + "\t");
+	                 System.out.print(boardArray[listIndex][3] + "\t");
+	                 System.out.println(boardArray[listIndex][4]);
+					 check[listIndex]=1; //출력했으면 1 -> 그 다음으로 큰 게시판번호 찾을 수 있음
+					}
+				}
 				
 				
-			}else if(selectNo == 6) {//종료 (O)
+			}else if(selectNo == 6) {//인기글 보기
+				System.out.println("------------------------------");
+				System.out.println("조회수 | 번호 | 제목 | 내용 | 글쓴이 ");
+				System.out.println("------------------------------");
+				
+				int top5 = 0;
+				int[] check = new int[100];
+				for(int i=0; i<boardArray.length; i++) {
+					
+					if(top5 > 4) {
+						break;
+					}
+					
+					if(boardArray[i][4]==null) {
+						continue;
+					}
+					int max = 0;
+					int bestIndex = -1;
+					for(int j=0; j<boardArray.length; j++) {
+						if(boardArray[j][4]==null) {
+							continue;
+						}
+						int num = Integer.parseInt(boardArray[j][4]);
+						if(max<=num && check[j]==0) {
+							max = num;
+							bestIndex = j;
+						}
+					}
+					if(bestIndex!=-1) {
+						System.out.print(boardArray[bestIndex][4] + "\t");
+		                System.out.print(boardArray[bestIndex][0] + "\t");
+		                System.out.print(boardArray[bestIndex][1] + "\t");
+		                System.out.print(boardArray[bestIndex][2] + "\t");
+		                System.out.println(boardArray[bestIndex][3]);
+						check[bestIndex]=1;
+						top5++;
+					}
+					
+				}
+			
+				
+			}else if(selectNo == 7) {//종료
 				run = false;
 			}
 			
