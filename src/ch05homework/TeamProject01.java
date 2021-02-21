@@ -8,7 +8,7 @@ public class TeamProject01 {
 
 	public static void main(String[] args) {
 		boolean run  = true;
-		int index = 0; //개시물번호
+		int index = 0; //게시물번호
 		int count=0; //조회수
 		String title;
 		String content;
@@ -53,14 +53,14 @@ public class TeamProject01 {
 					
 					
 					
-					/*
+					/* 강병주 idea
 					int[] check = new int[100]; //출력
 					for(int i=0; i<boardArray.length; i++) {
 						if(boardArray[i][0]==null) { //nullPointerException 해결 위함
 							continue;
 						}
 						int max = 0;
-						int listIndex = -1; 
+						int listIndex = -1; // 0,1 아닌 다른 값
 						for(int j=0; j<boardArray.length; j++) { //게시판번호 max 찾기
 							if(boardArray[j][0]==null) {
 								continue;
