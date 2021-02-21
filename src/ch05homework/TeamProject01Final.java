@@ -4,27 +4,26 @@ import java.util.Scanner;
 public class TeamProject01Final {
 public static void main(String[] args) {
 		
-		String[][] boardArray = new String[100][5];
+		String[][] boardArray = new String[100][5]; //게시물 배열
 		
 		Scanner scanner = new Scanner(System.in);
 		int count=0; // 게시물 번호
 		
-		while(true) {
+		while(true) { //true실행, false종료 //메뉴출력
 			System.out.println("------------------------------------------------------------------------------------------------");
 			System.out.println("1. 목록 | 2. 생성(Create) | 3. 읽기(Read) | 4. 수정(Update) | 5. 삭제(Delete) | 6. 인기글 TOP5 |  7. 종료");
 			System.out.println("------------------------------------------------------------------------------------------------");
 			System.out.print("메뉴선택: ");
 			
-			String selectNo = scanner.nextLine();
+			String selectNo = scanner.nextLine(); //사용자가 선택한 메뉴 번호를 받음
 			
 			
-			if(selectNo.equals("1")) {
+			if(selectNo.equals("1")) { //목록
 
-				// 변경 -> 조회수 반영 목록
-				// 조회수 세기 로직
-				int boardCount = 0 ;
+				//총 게시물 수 구하기
+				int boardCount = 0 ; //총 게시물 갯수
 				for(int i=0; i < boardArray.length; i++) {
-					if(boardArray[i][0] != null) {
+					if(boardArray[i][0] != null) { //게시물이 있는 경우 +1
 						boardCount++;
 					}
 					
@@ -40,19 +39,19 @@ public static void main(String[] args) {
 				System.out.print("조회수" + "\t\n");
 				System.out.println("------------------------------------------------------------------------------------------------");
 				
-				int[] check = new int[100]; // 출력한 게시물인지 아닌지 check하는 배열 
+				int[] check = new int[100]; // 출력한 게시물인지 아닌지 check하는 배열 (0,1로만 구성)
 				for(int i=0;i<boardArray.length;i++) { // 게시물을 출력할 for 문
-					if(boardArray[i][0]==null) { // 게시물이 null인 경우
+					if(boardArray[i][0]==null) { // 게시물이 null인 경우 nullPointerException 해결 위함
 						continue;
 					}
 					int max = 0; //가장 큰 게시판 번호 초기값 0
-					int index = -1;   //게시판 번호가 가장 클 때의 배열 인덱스
+					int index = -1;   //게시판 번호가 가장 클 때의 배열 인덱스 (0이나 1이 아닌 다른 숫자 입력, -1로 설정함)
 					for(int j=0;j<boardArray.length;j++) {//가장 큰 게시판 번호를 찾기 위한 for문
 						if(boardArray[j][0]==null) { // 게시물이 null인 경우
 							continue;
 						}
 						int num = Integer.parseInt(boardArray[j][0]); // 현재 게시판 번호
-						if(max<=num && check[j]==0) { //게시판 번호가 가장 큰 값이면서 출력하지 않은 게시물이면
+						if(max<=num && check[j]==0) { //게시판 번호가 가장 큰 값 && 출력안함
 							max=num; //게시판 번호를 max에 저장
 							index=j; //게시판 번호가 가장 큰 배열 인덱스 
 						}
@@ -64,13 +63,13 @@ public static void main(String[] args) {
 						System.out.print(boardArray[index][2] + "\t\t\t\t");
 						System.out.print(boardArray[index][3] + "\t\t");
 						System.out.print(boardArray[index][4] + "\t\n");
-						check[index]=1; //출력한 게시물 체크
+						check[index]=1; //출력했으면 1 -> 그 다음으로 큰 게시판번호 찾을 수 있음
 					}
 					
 				}			
 				
 				
-			} else if(selectNo.equals("2")) {
+			} else if(selectNo.equals("2")) { //생성
 				System.out.print("제목: ");
 				String title = scanner.nextLine();
 				System.out.print("내용: ");
@@ -79,9 +78,9 @@ public static void main(String[] args) {
 				String writer = scanner.nextLine();
 				
 				for(int i=0;i<boardArray.length;i++) {
-					if(boardArray[i][0]==null) {
-						count++; // 저장할 때 카운트 저장 (게시물 번호)
-						String[] arr = {
+					if(boardArray[i][0]==null) { //boardArray에서 가장 먼저 만나는 null 부분에 생성하기 위해
+						count++; // 저장할 때 카운트 +1 (게시물 번호)
+						String[] arr = { //사용자로부터 받은 String을 일차원 배열로 저장
 								String.valueOf(count),
 								title,
 								content,
@@ -89,13 +88,13 @@ public static void main(String[] args) {
 								"0"
 						};
 						
-						boardArray[i] = arr;
-						break;
+						boardArray[i] = arr; // arr을 boardArray에 저장
+						break; //생성(저장) for문 나감
 					}
 				}
-					
-				// 변경 -> 조회수 반영 목록
-				// 조회수 세기 로직
+				
+				//목록보기
+				//총 게시물 수 구하기
 				int boardCount = 0 ;
 				for(int i=0; i < boardArray.length; i++) {
 					if(boardArray[i][0] != null) {
@@ -145,55 +144,55 @@ public static void main(String[] args) {
 				
 
 				
-			} else if(selectNo.equals("3")) {
+			} else if(selectNo.equals("3")) { //읽기
 				System.out.print("번호: ");
-				String number = scanner.nextLine();
-				int i2 = -1; // 게시물이 있는지 없는지 체크
-				int hits;
+				String number = scanner.nextLine(); //사용자로부터 읽을 게시물 번호를 받음
+				int i2 = -1; // 게시물이 있는지 없는지(-1) 체크, 게시물 번호가 사용자가 입력한 번호와 일치하면 인덱스 저장할 변수
+				int hits; //조회수
 				for(int i=0;i<boardArray.length;i++) {
-					if(boardArray[i][0]==null) {
+					if(boardArray[i][0]==null) { //null이면 continue ㅑ++(다음 게시글 번호 탐색)
 						continue;
 					}
-					else if(boardArray[i][0].equals(number)) {
-						i2=i;
+					else if(boardArray[i][0].equals(number)) { //입력번호(int->String 변환함)와 게시물 번호(String)가 같으면
+						i2=i; //해당 게시물 인덱스 저장
 					}
 				}
 				
-				if(i2==-1) {
+				if(i2==-1) { //게시물이 없을 때
 					System.out.println("게시물이 존재하지 않습니다.");
 				} else {
 					System.out.println("제목: " + boardArray[i2][1]);
 					System.out.println("내용: " + boardArray[i2][2]);
 					System.out.println("글쓴이: " + boardArray[i2][3]);
-					hits = Integer.parseInt(boardArray[i2][4]);
-					hits++;
-					boardArray[i2][4]=String.valueOf(hits);
+					hits = Integer.parseInt(boardArray[i2][4]); //boardArray에 저장된 조회수(String->int 변환함) hits에 저장
+					hits++; //조회수 +1
+					boardArray[i2][4]=String.valueOf(hits); //boardArray에 증가된 조회수 저장
 					System.out.println("조회수: " + boardArray[i2][4]);
 				}
 				
 				
 				
-			} else if(selectNo.equals("4")) {
+			} else if(selectNo.equals("4")) { //수정
 				System.out.print("번호: ");
 				String number = scanner.nextLine();
-				int i2 = -1; // 게시물이 있는지 없는지 체크
+				int i2 = -1; // 게시물이 있는지 없는지(-1) 체크, 게시물 번호가 사용자가 입력한 번호와 일치하면 인덱스 저장할 변수
 				for(int i=0;i<boardArray.length;i++) {
 					if(boardArray[i][0]==null) {
 						continue;
 					}
-					else if(boardArray[i][0].equals(number)) {
-						i2=i;
+					else if(boardArray[i][0].equals(number)) { //입력번호(int->String 변환함)와 게시물 번호(String)가 같으면
+						i2=i; //해당 게시물 인덱스 저장
 					}
 				}
 				
-				if(i2==-1) {
+				if(i2==-1) { //게시물이 없을 때
 					System.out.println("게시물이 존재하지 않습니다.");
 				} else {
-					System.out.println("기존제목: " + boardArray[i2][1]);
+					System.out.println("기존제목: " + boardArray[i2][1]); //기존 제목 출력
 					System.out.print("수정제목: ");
-					String title = scanner.nextLine();
-					if(!title.equals("")) {
-						boardArray[i2][1]=title;
+					String title = scanner.nextLine(); //수정할 제목 받아옴
+					if(!title.equals("")) { //수정할 제목이 공백이 아닐 경우
+						boardArray[i2][1]=title; //게시물의 제목 수정
 					}
 					System.out.println("기존내용: " + boardArray[i2][2]);
 					System.out.print("수정내용: ");
@@ -202,8 +201,8 @@ public static void main(String[] args) {
 						boardArray[i2][2]=content;
 					}
 					
-					// 변경 -> 조회수 반영 목록
-					// 조회수 세기 로직
+					// 목록보여주기
+					// 총 게시물 갯수 구하기
 					int boardCount = 0 ;
 					for(int i=0; i < boardArray.length; i++) {
 						if(boardArray[i][0] != null) {
@@ -258,28 +257,28 @@ public static void main(String[] args) {
 				
 				
 				
-			} else if(selectNo.equals("5")) {
+			} else if(selectNo.equals("5")) { //삭제
 				System.out.print("번호: ");
 				String number = scanner.nextLine();
-				int i2 = -1;
+				int i2 = -1; //게시물이 있는지 없는지(-1) 체크, 게시물 번호가 사용자가 입력한 번호와 일치하면 인덱스 저장할 변수
 				for(int i=0;i<boardArray.length;i++) {
 					if(boardArray[i][0]==null) {
 						continue;
 					}
-					else if(boardArray[i][0].equals(number)) {
-						i2=i;
+					else if(boardArray[i][0].equals(number)) { //입력번호(int->String 변환함)와 게시물 번호(String)가 같으면
+						i2=i; ////해당 게시물 인덱스 저장
 					}
 				}
 				
-				if(i2==-1) {
+				if(i2==-1) { //게시물이 없을 때
 					System.out.println("게시물이 존재하지 않습니다.");
 				} else {
-					for(int j=0;j<boardArray[i2].length;j++) {
-						boardArray[i2][j]=null;
+					for(int j=0;j<boardArray[i2].length;j++) { //boardArray[i2].length -> 5
+						boardArray[i2][j]=null; // 헤딩 게시물에 null 저장 (삭제)
 					}
 					
-					// 변경 -> 조회수 반영 목록
-					// 조회수 세기 로직
+					// 목록보여주기
+					// 총 게시글 갯수 구하기
 					int boardCount = 0 ;
 					for(int i=0; i < boardArray.length; i++) {
 						if(boardArray[i][0] != null) {
@@ -329,9 +328,9 @@ public static void main(String[] args) {
 				}
 				
 				
-			} else if(selectNo.equals("6")) {
+			} else if(selectNo.equals("6")) { // 추가기능) 인기글 Top5 보여주기
 				int topCount = 1; // 5개만 출력하기 위한 변수
-				int[] check = new int[100];
+				int[] check = new int[100]; // 출력한 게시물인지 아닌지 check하는 배열 (0,1로만 구성)
 				System.out.println("------------------------------------------------------------------------------------------------------");
 				System.out.print("순위" + "\t");
 				System.out.print("번호" + "\t");
@@ -342,27 +341,27 @@ public static void main(String[] args) {
 				System.out.println("------------------------------------------------------------------------------------------------------");
 				
 				for(int i=0;i<boardArray.length;i++) {
-					if(boardArray[i][0]==null) {
+					if(boardArray[i][0]==null) { //게시물이 없을 경우 continue (다음 게시물로, i++)
 						continue;
 					} else {
-						if (topCount > 5) { // 인기글 5개를 넘어가면? 나간다
+						if (topCount > 5) { // 인기글 5개를 넘어가면? 나간다(더 이상 찾지 않음)
 							break;
 						} else {
-							int max = 0;
-							int index = -1;
+							int max = 0; // 가장 큰 조회수를 저장할 변수
+							int index = -1; //조회수가 가장 클 때의 배열 인덱스 (0이나 1이 아닌 다른 숫자 입력, -1로 설정함)
 							for(int j=0;j<boardArray.length;j++) {
 								if(boardArray[j][4]==null) { //  조회수가 null이면 넘어가기
 									continue;
 								}
-								int num = Integer.parseInt(boardArray[j][4]);
-								if(max<=num && check[j]==0) { // 최대값 비교
-									max=num;
-									index=j;
+								int num = Integer.parseInt(boardArray[j][4]); // boardArray에 저장된 조회수(String->int)
+								if(max<=num && check[j]==0) { //조회수가 가장 큰 값 && 출력안함
+									max=num; //가장 큰 조회수를 max에 저장
+									index=j; //해당 게시물의 인덱스를 저장
 								}
 							}
 							
 							if(index!=-1) { // 출력할 게시물이 있는가?
-								if(boardArray[index][4].equals("0")) { // 게시물의 조회수가 0이라면 보여주지 않는다
+								if(boardArray[index][4].equals("0")) { // 게시물의 조회수가 0이라면 보여주지 않음
 									break;
 								} else {
 									System.out.print(topCount + "위\t");
@@ -372,7 +371,7 @@ public static void main(String[] args) {
 									System.out.print(boardArray[index][3] + "\t\t");
 									System.out.print(boardArray[index][4] + "\t\n");
 									check[index]=1; // 출력한 게시물 체크
-									topCount++; // 인기글 추가
+									topCount++; // 인기글 순위 추가
 								}
 								
 							}
@@ -382,11 +381,11 @@ public static void main(String[] args) {
 				
 				}	
 
-			} else if(selectNo.equals("7")) {
+			} else if(selectNo.equals("7")) { //종료
 				System.out.println("프로그램 종료");
 				break;
 				
-			} else {
+			} else { //메뉴 1~7 이 아닌 값을 입력했을 경우
 				System.out.println("다시 선택해주세요.");
 			}
 			
