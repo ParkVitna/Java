@@ -1,0 +1,23 @@
+package ch07.exam11;
+
+public class Cat {
+	public String name;
+	public String kind;
+	
+	public void sleep() {
+		System.out.println("¿·¿ª ¿‚¥œ¥Ÿ.");
+	}
+	
+	public void eat() {
+		System.out.println("∏‘Ω¿¥œ¥Ÿ.");
+	}
+	
+	public void sound() {
+		System.out.println("æﬂøÀ");
+	}
+	
+	public void scratch() {
+		System.out.println("«“≈¢¥œ¥Ÿ.");
+	}
+
+}
