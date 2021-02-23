@@ -2,6 +2,7 @@ package ch08.exam04;
 
 public class HankookTire implements Tire{
 
+	//Tire 인터페이스 구현
 	@Override
 	public void roll() {
 		// TODO Auto-generated method stub
