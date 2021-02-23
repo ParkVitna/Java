@@ -1,17 +1,8 @@
 package ch07.exam11;
 
-public class Dog {
-	public String name;
-	public String kind;
-	
-	public void sleep() {
-		System.out.println("¿·¿ª ¿‚¥œ¥Ÿ.");
-	}
-	
-	public void eat() {
-		System.out.println("∏‘Ω¿¥œ¥Ÿ.");
-	}
-	
+public class Dog extends Animal {
+
+	@Override
 	public void sound() {
 		System.out.println("∏€∏€");
 	}
