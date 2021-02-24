@@ -5,7 +5,7 @@ public class Example {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			method();
+			method(); //호출한 곳
 		}catch (Exception e){
 			//예외 메시지 별로 예외처리를 할 때
 			String message = e.getMessage();
@@ -20,8 +20,8 @@ public class Example {
 		
 	}
 
-	public static void method() throws NoAccountException {
-		throw new NoAccountException("입금 계좌가 없음");
+	public static void method() throws NoAccountException { //예외 발생시킨 메소드에서 예외 떠넘기기 해야함 -> 호출한 곳에서 예외처리
+		throw new NoAccountException("입금 계좌가 없음"); //예외 발생시키기
 		
 	}
 

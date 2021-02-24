@@ -1,6 +1,7 @@
 package ch10.exam06;
 
 public class Account {
+	//입금
 	public void deposit(String account, int money) throws NoAccountException {
 		if(account == null) {
 			//예외 발생 코드 -> 뭐 때문에 예외가 발생했다 알려줌 (예외처리를 사용하는 곳에서 하게 하기 위해) -> 예외처리를 다양하게 하기 위해서
@@ -10,6 +11,7 @@ public class Account {
 		System.out.println("입금 성공");
 	}
 	
+	//출금
 	public void withdraw(String account, int money) throws NoAccountException, BalanceLackExample {
 		int balance = 10000;
 		//계좌 없다 (예외1), 계좌 잔액보다 많은 금액 뺄 수 없다 (예외2, 잔고부족)
