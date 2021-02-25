@@ -1,9 +1,11 @@
 package ch11.exam04;
 
 public class A {
+	//Field
 	public int field1;
 	public int field2;
 	
+	//Constructor
 	public A() {
 		
 	}
@@ -12,6 +14,8 @@ public class A {
 		this.field1 = field1;
 	}
 	
+	
+	//Method
 	public void method1() {
 		
 	}

@@ -10,7 +10,10 @@ public class Example {
 		
 		System.out.println(m1 == m2); //false
 		System.out.println(m1.equals(m2)); //false -> object이 가지고 있는 equals는 번지비교
-
+		//재정의하고 나면 true
+		System.out.println(m1.toString());
+		System.out.println(m2.toString());
+	
 	}
 
 

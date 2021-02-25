@@ -10,11 +10,13 @@ public class Board {
 	private Date writeDate; //날짜를 전달할 때
 	
 	public Board() {
+		/*
 		this.bno = bno;
 		this.title = title;
 		this.content = content;
 		this.write = write;
 		this.writeDate = writeDate;
+		*/
 	}
 
 	public int getBno() {

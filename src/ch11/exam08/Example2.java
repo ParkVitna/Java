@@ -18,7 +18,16 @@ public class Example2 {
 		int hour = now.get(Calendar.HOUR_OF_DAY); // 0~23
 		int minute = now.get(Calendar.MINUTE);
 		int second = now.get(Calendar.SECOND);
-
+		
+		System.out.println(year);
+		System.out.println(month);
+		System.out.println(date);
+		System.out.println(day);
+		System.out.println(amPm);
+		System.out.println(hour);
+		System.out.println(minute);
+		System.out.println(second);
+		
 	}
 
 }

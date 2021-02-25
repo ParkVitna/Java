@@ -17,12 +17,10 @@ public class Example {
 			System.out.println("잘못된 데이터");
 		}
 		
-		String regExp2 = ".*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*";
+		String regExp2 = ".*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*"; 
 		String password = "a#123456789";
-		boolean result2 = Pattern.matches(regExp, password);
-		System.out.println(result2); //결과다시확인 true 나와야되는데...
-		
-		
+		boolean result2 = Pattern.matches(regExp2, password);
+		System.out.println(result2);
 
 	}
 

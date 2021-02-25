@@ -20,7 +20,7 @@ public class Example {
 	}
 	
 	public static void service (Board board) {
-		System.out.println(board.getBno()); //5°³ ´Ù
+		System.out.println(board.getBno());
 		System.out.println(board.getTitle());
 		System.out.println(board.getContent());
 		System.out.println(board.getWrite());

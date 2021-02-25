@@ -3,6 +3,7 @@ package ch11.exam03;
 public class Example {
 	
 	public static void method() {
+		//1부터 1000000까지의 합을 구하는데 걸린 시간
 		long sum = 0;
 		for(int i=0; i<1000000; i++) {
 			sum += i;
