@@ -12,7 +12,7 @@ public class Example {
 		
 		//뮤직 작업을 하는 스레드 생성과 실행
 		Thread thread2 = new Thread(new MusicTask()); //제공된 객체의 run()을 실행
-		thread2.start(); //스레드2 실행해~ => 실행하는 코드는 MusicTastk.java에서 run()을 실행
+		thread2.start(); //스레드2 실행해~ => 실행하는 코드는 MusicTask.java에서 run()을 실행
 		
 		//->다형성 : 런어블 인터페이스를 사용하는 객체들을 다 사용할 수 있어서
 		

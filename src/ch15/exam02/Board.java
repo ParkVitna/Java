@@ -1,6 +1,6 @@
 package ch15.exam02;
 
-public class Board { //데이터를 전달할 목적으로 만들어진 객체 vo dto???
+public class Board { //데이터를 전달할 목적으로 만들어진 객체 obj(Object) ?
 	//Field
 	private int bno;
 	private String title;
