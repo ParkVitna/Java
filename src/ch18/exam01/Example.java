@@ -25,7 +25,7 @@ public class Example {
 			
 			//방법2
 			int data = -1;
-			while((data = is.read()) != -1) {
+			while((data = is.read()) != -1) { //read() 메소드는 입력스트림으로부터 1바이트를 읽고 4바이트 int타입으로 리턴 => □□□■ (1바이트 읽었을 때, int의 4바이트)
 				System.out.print(data);
 			}
 			

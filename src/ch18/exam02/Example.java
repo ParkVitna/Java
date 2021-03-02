@@ -8,8 +8,6 @@ import java.util.Arrays;
 public class Example {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
 		String filePath = "C:/Users/ParkVitNa/git/Java/src/ch18/exam02/data.txt";
 		try {
 			InputStream is = new FileInputStream(filePath);
@@ -28,10 +26,13 @@ public class Example {
 			//방법2 -> 많이 사용함
 			int readNum = -1;
 			while((readNum = is.read(data)) != -1) {
-				System.out.println(readNum + ": " + Arrays.toString(data));
+				System.out.println(readNum + ": " + Arrays.toString(data)); 
+				//toString(byte[] a)
+				//Returns a string representation of the contents of the specified array.
+				//지정된 배열의 내용에 대한 문자열 표현을 반환합니다.
 			}
 			
-			is.close();
+			
 			
 			/*int readNum = is.read(data); //읽은 수
 			System.out.println(readNum + ": " + Arrays.toString(data)); //ABC
@@ -41,7 +42,9 @@ public class Example {
 			
 			readNum = is.read(data); //읽은 수
 			System.out.println(readNum + ": " + Arrays.toString(data)); //바이트를 더 이상 읽을 수 없다면 -1 리턴
-			*/			
+			*/						
+			
+			is.close();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

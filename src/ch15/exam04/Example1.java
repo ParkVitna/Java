@@ -37,7 +37,7 @@ public class Example1 {
 			System.out.println(key + ": " + value);
 		}
 		
-		//삭제
+		//Entry 삭제
 		map.remove("s1");
 		map.clear();
 		
