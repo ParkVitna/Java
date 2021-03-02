@@ -1,4 +1,4 @@
-package ch15.exam03;
+package ch15.exam04;
 
 public class User {
 	//Field
@@ -27,7 +27,6 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 	@Override
 	public int hashCode() {
